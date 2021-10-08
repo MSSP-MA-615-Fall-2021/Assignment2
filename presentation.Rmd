@@ -17,7 +17,6 @@ The data I used are the proportion of people who did not use the internet in the
 
 The countries I selected were India and Japan. The reason why I use these two countries is because during the timeline, it is easy to compare the usage whether the Internet usage or own rate of personal computer. In addition, there are both developing countries. Once we entered the 21 century, a lot of technologies have been developed by human beings. It is interesting to understand the relationship between these technologies, and how they will improve humans' life.
 
-
 # Graph
 
 #### $A.$ The Percentage of People Not Using The Internet
@@ -32,14 +31,10 @@ plt_data('India', 'China', 'NUI')
 plt_data('India', 'China', 'PC')
 ```
 
-
-
 # Explanation
 
 $\hspace{1cm}$ By the graph shown above, the first graph illustrates the percentage of people not using the internet from the last three months in any location. The second is the personal computer rate per 100 people in a year. It is very clear to notice there was no internet connection from 1989 to 1996, since at that time the personal computer was not that familiar for society. After 1996, even though it is still in the late 20 century, most countries have had tremendous increases for personal computer owning. Furthermore, the second graph illustrates the relationship between PCs and the Internet. It is obvious to see how PCs and the Internet affect human life.
 
-
-
 # Conclusion
 
-$\hspace{1cm}$According to the data I show above, the Internet and Personal Computers have had a strong relationship after entering the 21 century. In addition, the Internet has become an irreplaceable tool in our life, it is hard to think humans live without the Internet or PCs. However, the smartphone/tablet might replace some functions of PCs in modern society, since we all like to carry light weight devices for daily use. Therefore, it will be interesting to predict the relationship between electronic devices and the Internet. 
+$\hspace{1cm}$ According to the data I show above, the Internet and Personal Computers have had a strong relationship after entering the 21 century. In addition, the Internet has become an irreplaceable tool in our life, it is hard to think humans live without the Internet or PCs. However, the smartphone/tablet might replace some functions of PCs in modern society, since we all like to carry light weight devices for daily use. Therefore, it will be interesting to predict the relationship between electronic devices and the Internet.

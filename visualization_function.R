@@ -41,3 +41,7 @@ plt_data <- function(country1, country2, value) {
       labs(x = 'Year', y = 'PC per 100 people')
   } else stop("Warning: Please ensure the value that enter was correct :D .") # Checking if the value include in the function.
 }
+
+# Debugging function
+plt_data('India', 'China', 'NUI')
+plt_data('India', 'China', 'PC')
