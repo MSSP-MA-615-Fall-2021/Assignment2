@@ -1,0 +1,91 @@
+---
+title: "Code Explanation"
+author: "Zening Ye"
+date: "10/7/2021"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Inward-facing file
+# Explaning the detail for each code.
+```{r}
+# Libray the package I need for tidy data and plot. Mostly using tidyverse and ggplt2
+library(ggplot2) 
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+# Description 1: The proportion of people who did not use internet in the last 3 months from any locations, 
+# calculate as the percentage of the total population. 
+# Description 2: Personal computers per 100 people in a year
+# Data from 1989 to 2005 
+
+nnup1 <- tibble(read_csv("nnup.csv")) # Read the data from local work direction
+pc1 <- tibble(read_csv("PC.csv"))
+
+nnup1 <- nnup1[,1:18] # Matching the data, ensure they have same timeline 
+
+# Changing data from long data to wide data
+nnup2 <- nnup1 %>% 
+  pivot_longer(col = -country, names_to = "Year", values_to = "NUI", values_drop_na = T)  
+
+pc2 <- pc1 %>% 
+  pivot_longer(col = -country, names_to = "Year", values_to = "PC", values_drop_na = T)
+
+data <- full_join(nnup2, pc2, na.rm = T) # After changing data and drop NA value, join two data.
+```
+
+```{r}
+# Creating function with 3 variables: country1, country2 and value.
+plt_data <- function(country1, country2, value) {
+  # The following varibales only for debugging
+  # country1 <- 'China'
+  # country2 <- 'Japan'
+  # value <- 'PC'
+  # value <- as.character(value) 
+  data1 <- filter(data, country == country1) # using filter to match the country1 data 
+  data2 <- filter(data, country == country2) # same with the above function
+  data1$Year <- as.numeric(data1$Year) # changing Year from character to numerical 
+  data2$Year <- as.numeric(data2$Year)
+
+  
+  # Create datasets for logit statements
+  # from c1.1 to c2.2 all function is to frame the data in specific detail
+  c1.1 <- data.frame(country = data1$country, Year = data1$Year, NUI = data1$NUI) 
+  c2.1 <- data.frame(country = data2$country, Year = data2$Year, NUI = data2$NUI)
+  c1.2 <- data.frame(country = data1$country, Year = data1$Year, PC = data1$PC)
+  c2.2 <- data.frame(country = data2$country, Year = data2$Year, PC = data2$PC)
+ 
+  # Combine two data into one 
+  t_data1 <- bind_rows(c1.1,c2.1)
+  t_data2 <- bind_rows(c1.2,c2.2)
+  
+  
+  # 'if' sentence to determine the value whether NUI or PC
+  if (value == 'NUI'){
+     # Plot use geom_line, x-axis is Year, Yaxis is NUI, seperate countris by using col 
+    ggplot(data = t_data1, aes(x = Year, y = NUI, col = country)) +
+      geom_line(size = 0.5) +
+      ggtitle('Percentage of People Not Using Internet') +
+      labs(x = 'Year', y = 'Percentage of Not Use Internet')
+  } else if (value == 'PC') {
+    ggplot(data = t_data2, aes(x = Year, y = PC, col = country)) +
+      geom_line(size = 0.5) +
+      ggtitle('Personal Computers Per 100 People in A Year')+
+      labs(x = 'Year', y = 'PC per 100 people')
+  } else stop("Warning: Please ensure the value that enter was correct :D .") # Checking if the value include in the function.
+}
+```
+
+```{r}
+# Debugging function
+plt_data('India', 'China', 'NUI')
+plt_data('India', 'China', 'PC')
+```
+
