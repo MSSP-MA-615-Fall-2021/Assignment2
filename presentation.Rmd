@@ -9,6 +9,7 @@ output:
 ```{r, echo = FALSE, message=FALSE}
 source('wrangling_code.R')
 source('visualization_function.R')
+source('xihao_visualization.R')
 ```
 
 # Introduction
@@ -23,12 +24,14 @@ The countries I selected were India and Japan. The reason why I use these two co
 
 ```{r, echo = FALSE}
 plt_data('India', 'China', 'NUI')
+plt_diff('India', 'China', 'NUI')
 ```
 
 #### $B.$ The Personal Computer Own Per 100 People in A Year
 
 ```{r, echo = FALSE}
 plt_data('India', 'China', 'PC')
+plt_diff('India', 'China', 'PC')
 ```
 
 # Explanation
